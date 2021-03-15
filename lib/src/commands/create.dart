@@ -9,8 +9,8 @@ import 'package:meta/meta.dart';
 import 'package:path/path.dart' as path;
 import 'package:usage/usage_io.dart';
 import 'package:very_good_analysis/very_good_analysis.dart';
-import 'package:very_good_cli/src/command_runner.dart';
-import 'package:very_good_cli/src/templates/very_good_core_bundle.dart';
+import 'package:groovin_cli/src/command_runner.dart';
+import 'package:groovin_cli/src/templates/groovin_core_bundle.dart';
 
 // A valid Dart identifier that can be used for a package, i.e. no
 // capital letters.
@@ -21,17 +21,14 @@ final RegExp _identifierRegExp = RegExp('[a-z_][a-z0-9_]*');
 typedef GeneratorBuilder = Future<MasonGenerator> Function(MasonBundle);
 
 /// {@template create_command}
-/// `very_good create` command creates a new very good flutter app.
+/// `groovin create` command creates a new groovin flutter app.
 /// {@endtemplate}
 class CreateCommand extends Command<int> {
   /// {@macro create_command}
   CreateCommand({
-    @required Analytics analytics,
     Logger logger,
     GeneratorBuilder generator,
-  })  : assert(analytics != null),
-        _analytics = analytics,
-        _logger = logger ?? Logger(),
+  })  : _logger = logger ?? Logger(),
         _generator = generator ?? MasonGenerator.fromBundle {
     argParser.addOption(
       'project-name',
@@ -41,13 +38,12 @@ class CreateCommand extends Command<int> {
     );
   }
 
-  final Analytics _analytics;
   final Logger _logger;
   final Future<MasonGenerator> Function(MasonBundle) _generator;
 
   @override
   String get description =>
-      'Creates a new very good flutter project in the specified directory.';
+      'Creates a new groovin flutter project in the specified directory.';
 
   @override
   String get summary => '$invocation\n$description';
@@ -56,7 +52,10 @@ class CreateCommand extends Command<int> {
   String get name => 'create';
 
   @override
-  String get invocation => 'very_good create <output directory>';
+  List<String> get aliases => ['bake'];
+
+  @override
+  String get invocation => 'groovin create <output directory>';
 
   /// [ArgResults] which can be overridden for testing.
   @visibleForTesting
@@ -69,7 +68,7 @@ class CreateCommand extends Command<int> {
     final outputDirectory = _outputDirectory;
     final projectName = _projectName;
     final generateDone = _logger.progress('Bootstrapping');
-    final generator = await _generator(veryGoodCoreBundle);
+    final generator = await _generator(groovinCoreBundle);
     final fileCount = await generator.generate(
       DirectoryGeneratorTarget(outputDirectory, _logger),
       vars: {'project_name': projectName},
@@ -78,12 +77,12 @@ class CreateCommand extends Command<int> {
     generateDone('Bootstrapping complete');
     _logSummary(fileCount);
 
-    unawaited(_analytics.sendEvent(
+    /*unawaited(_analytics.sendEvent(
       'create',
       generator.id,
       label: generator.description,
     ));
-    await _analytics.waitForLastPing(timeout: VeryGoodCommandRunner.timeout);
+    await _analytics.waitForLastPing(timeout: VeryGoodCommandRunner.timeout);*/
 
     return ExitCode.success.code;
   }
@@ -96,20 +95,8 @@ class CreateCommand extends Command<int> {
       )
       ..flush(_logger.success)
       ..info('\n')
-      ..alert('Created a Very Good App! 🦄')
-      ..info('\n')
-      ..info(
-        lightGray.wrap(
-          '''+----------------------------------------------------+
-| Looking for more features?                         |
-| We have an enterprise-grade solution for companies |
-| called Very Good Start.                            |
-|                                                    |
-| For more info visit:                               |
-| https://verygood.ventures/solution/very-good-start |
-+----------------------------------------------------+''',
-        ),
-      );
+      ..alert('Created a Groovin App! 🍪')
+      ..info('\n');
   }
 
   /// Gets the project name.

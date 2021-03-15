@@ -1,8 +1,8 @@
 import 'dart:io';
-import 'package:very_good_cli/src/command_runner.dart';
+import 'package:groovin_cli/src/command_runner.dart';
 
 void main(List<String> args) async {
-  await _flushThenExit(await VeryGoodCommandRunner().run(args));
+  await _flushThenExit(await GroovinCommandRunner().run(args));
 }
 
 /// Flushes the stdout and stderr streams, then exits the program with the given

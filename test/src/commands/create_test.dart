@@ -5,8 +5,8 @@ import 'package:mason/mason.dart';
 import 'package:mockito/mockito.dart';
 import 'package:test/test.dart';
 import 'package:usage/usage_io.dart';
-import 'package:very_good_cli/src/command_runner.dart';
-import 'package:very_good_cli/src/commands/create.dart';
+import 'package:groovin_cli/src/command_runner.dart';
+import 'package:groovin_cli/src/commands/create.dart';
 
 class MockArgResults extends Mock implements ArgResults {}
 
@@ -20,7 +20,7 @@ void main() {
   group('Create', () {
     Analytics analytics;
     Logger logger;
-    VeryGoodCommandRunner commandRunner;
+    GroovinCommandRunner commandRunner;
 
     setUp(() {
       analytics = MockAnalytics();
@@ -33,21 +33,20 @@ void main() {
 
       logger = MockLogger();
       when(logger.progress(any)).thenReturn(([_]) {});
-      commandRunner = VeryGoodCommandRunner(
-        analytics: analytics,
+      commandRunner = GroovinCommandRunner(
         logger: logger,
       );
     });
 
     test('throws AssertionError when analytics is null', () {
       expect(
-        () => CreateCommand(analytics: null),
+        () => CreateCommand(),
         throwsA(isA<AssertionError>()),
       );
     });
 
     test('can be instantiated without explicit logger', () {
-      final command = CreateCommand(analytics: analytics);
+      final command = CreateCommand();
       expect(command, isNotNull);
     });
 
@@ -91,7 +90,6 @@ void main() {
       final argResults = MockArgResults();
       final generator = MockMasonGenerator();
       final command = CreateCommand(
-        analytics: analytics,
         logger: logger,
         generator: (_) async => generator,
       )..argResultOverrides = argResults;
@@ -129,7 +127,7 @@ void main() {
         ),
       ).called(1);
       verify(
-        analytics.waitForLastPing(timeout: VeryGoodCommandRunner.timeout),
+        analytics.waitForLastPing(timeout: GroovinCommandRunner.timeout),
       ).called(1);
     });
   });

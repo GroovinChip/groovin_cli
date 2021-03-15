@@ -7,39 +7,35 @@ import 'package:mason/mason.dart';
 import 'package:mockito/mockito.dart';
 import 'package:test/test.dart';
 import 'package:usage/usage_io.dart';
-import 'package:very_good_cli/src/command_runner.dart';
-import 'package:very_good_cli/src/version.dart';
+import 'package:groovin_cli/src/command_runner.dart';
+import 'package:groovin_cli/src/version.dart';
 
 class MockAnalytics extends Mock implements Analytics {}
 
 class MockLogger extends Mock implements Logger {}
 
 const expectedUsage = [
-  '🦄 A Very Good Command Line Interface\n'
+  '🍪 A Delicious Command Line Interface\n'
       '\n'
-      'Usage: very_good <command> [arguments]\n'
+      'Usage: groovin <command> [arguments]\n'
       '\n'
       'Global options:\n'
       '-h, --help           Print this usage information.\n'
       '    --version        Print the current version.\n'
-      '    --analytics      Toggle anonymous usage statistics.\n'
-      '\n'
-      '          [false]    Disable anonymous usage statistics\n'
-      '          [true]     Enable anonymous usage statistics\n'
       '\n'
       'Available commands:\n'
-      '  create   very_good create <output directory>\n'
-      '''           Creates a new very good flutter project in the specified directory.\n'''
+      '  create   groovin create <output directory>\n'
+      '''           Creates a new groovin flutter project in the specified directory.\n'''
       '\n'
-      'Run "very_good help <command>" for more information about a command.'
+      'Run "groovin help <command>" for more information about a command.'
 ];
 
 void main() {
-  group('VeryGoodCommandRunner', () {
+  group('GroovinCommandRunner', () {
     List<String> printLogs;
     Analytics analytics;
     Logger logger;
-    VeryGoodCommandRunner commandRunner;
+    GroovinCommandRunner commandRunner;
 
     void Function() overridePrint(void Function() fn) {
       return () {
@@ -58,20 +54,19 @@ void main() {
       when(analytics.enabled).thenReturn(false);
 
       logger = MockLogger();
-      commandRunner = VeryGoodCommandRunner(
-        analytics: analytics,
+      commandRunner = GroovinCommandRunner(
         logger: logger,
       );
     });
 
     test('can be instantiated without an explicit analytics/logger instance',
         () {
-      final commandRunner = VeryGoodCommandRunner();
+      final commandRunner = GroovinCommandRunner();
       expect(commandRunner, isNotNull);
     });
 
     group('run', () {
-      test('prompts for analytics collection on first run (y)', () async {
+      /*test('prompts for analytics collection on first run (y)', () async {
         when(analytics.firstRun).thenReturn(true);
         when(logger.prompt(any)).thenReturn('y');
         final result = await commandRunner.run(['--version']);
@@ -85,7 +80,7 @@ void main() {
         final result = await commandRunner.run(['--version']);
         expect(result, equals(ExitCode.success.code));
         verify(analytics.enabled = false);
-      });
+      });*/
 
       test('handles FormatException', () async {
         const exception = FormatException('oops!');
@@ -137,7 +132,7 @@ void main() {
         }));
       });
 
-      group('--analytics', () {
+      /*group('--analytics', () {
         test('sets analytics.enabled to true', () async {
           final result = await commandRunner.run(['--analytics', 'true']);
           expect(result, equals(ExitCode.success.code));
@@ -163,13 +158,13 @@ void main() {
           final result = await commandRunner.run(['--analytics']);
           expect(result, equals(ExitCode.usage.code));
         });
-      });
+      });*/
 
       group('--version', () {
         test('outputs current version', () async {
           final result = await commandRunner.run(['--version']);
           expect(result, equals(ExitCode.success.code));
-          verify(logger.info('very_good version: $packageVersion'));
+          verify(logger.info('groovin version: $packageVersion'));
         });
       });
     });
