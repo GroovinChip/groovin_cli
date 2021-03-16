@@ -20,7 +20,7 @@ $ dart pub global activate --source git git@github.com:GroovinChip/groovin_cli.g
 
 ### `$ groovin create`
 
-Create a new groovin flutter starter application in seconds based on Groovin Core (link coming soon).
+Create a new groovin flutter starter application in seconds based on [Groovin Core](https://github.com/GroovinChip/groovin_core).
 
 (And for funzies - you can write `$ groovin bake` to do the same thing!)
 

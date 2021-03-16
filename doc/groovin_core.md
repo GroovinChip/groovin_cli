@@ -31,7 +31,7 @@ $ cd my_app
 $ flutter packages get
 ```
 
-_\*Very Good Core works on iOS and Android, with Web and Desktop support coming soon._
+_\*[Groovin Core](https://github.com/GroovinChip/groovin_core) works on iOS and Android, with Web and Desktop support coming soon._
 
 Now your app is running 🎉
 
@@ -41,7 +41,7 @@ Now your app is running 🎉
 
 This project is built on Very Good Vetures' [very_good_cli](https://github.com/VeryGoodOpenSource/very_good_cli). I've long been frustrated by having to repeat the same steps over and over in my projects that I finally just forked this project and customized it to my liking.
 
-The CLI to be extensible so it could potentially support multiple commands and templates in the future, just like the `very_good_cli` is.
+The CLI is extensible so it could potentially support multiple commands and templates in the future, just like the `very_good_cli` is.
 
 
 [firebase_analytics_link]: https://firebase.google.com/products/analytics
