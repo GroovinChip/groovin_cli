@@ -1,7 +1,5 @@
 # Groovin Core 🍪
 
-[![Very Good Ventures][logo]][very_good_ventures_link]
-
 Built upon [very_good_cli](https://github.com/VeryGoodOpenSource/very_good_cli) with 💙 and 🍪
 
 A Delicious Flutter Starter Project created by GroovinChip
@@ -31,7 +29,7 @@ $ cd my_app
 $ flutter packages get
 ```
 
-_\*[Groovin Core](https://github.com/GroovinChip/groovin_core) works on iOS and Android, with Web and Desktop support coming soon._
+_\*[Groovin Core](https://github.com/GroovinChip/groovin_core) works on iOS, Android, Web and macOS._s
 
 Now your app is running 🎉
 
