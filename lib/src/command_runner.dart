@@ -1,9 +1,7 @@
 import 'package:args/args.dart';
 import 'package:args/command_runner.dart';
-import 'package:io/ansi.dart';
 import 'package:io/io.dart';
 import 'package:mason/mason.dart';
-import 'package:usage/usage_io.dart';
 import 'package:groovin_cli/src/commands/commands.dart';
 
 import 'version.dart';
@@ -22,15 +20,6 @@ class GroovinCommandRunner extends CommandRunner<int> {
         negatable: false,
         help: 'Print the current version.',
       );
-      /*..addOption(
-        'analytics',
-        help: 'Toggle anonymous usage statistics.',
-        allowed: ['true', 'false'],
-        allowedHelp: {
-          'true': 'Enable anonymous usage statistics',
-          'false': 'Disable anonymous usage statistics',
-        },
-      );*/
     addCommand(CreateCommand(logger: logger));
   }
 

@@ -1,81 +1,47 @@
-# Very Good CLI
+# Groovin CLI
 
-[![Very Good Ventures][logo]][very_good_ventures_link]
+Built upon [very_good_cli](https://github.com/VeryGoodOpenSource/very_good_cli) with 💙 and 🍪
 
-Developed with 💙 by [Very Good Ventures][very_good_ventures_link] 🦄
-
-[![ci][ci_badge]][ci_link]
-[![coverage][coverage_badge]][ci_link]
-[![pub package][pub_badge]][pub_link]
-[![style: very good analysis][very_good_analysis_badge]][very_good_analysis_link]
 [![License: MIT][license_badge]][license_link]
+
+**Special thanks** to [Felix Angelov](https://github.com/GroovinChip/groovin_cli/commits?author=felangel) for setting aside his valuable time for a tutoring session on [mason](https://pub.dev/packages/mason) and how [very_good_cli](https://github.com/VeryGoodOpenSource/very_good_cli) uses it. Thank you, Felix!
 
 ---
 
-A Very Good Command Line Interface for Dart.
+A Delicious Command Line Interface for Dart 🍪.
 
 ## Installing
 
 ```sh
-$ dart pub global activate very_good_cli
+$ dart pub global activate --source git git@github.com:GroovinChip/groovin_cli.git
 ```
 
 ## Commands
 
-### `$ very_good create`
+### `$ groovin create`
 
-Create a new very good flutter starter application in seconds based on [Very Good Core][very_good_core_link].
-
-![Very Good Create][very_good_create]
-
-### What's Included? 📦
-
-Out of the box, [Very Good Core][very_good_core_link] includes:
-
-✅&nbsp; [Cross Platform Support][flutter_cross_platform_link] - Built-in support for iOS, Android, and Web (Desktop coming soon!)
-
-✅&nbsp; [Build Flavors][flutter_flavors_link] - Multiple flavor support for development, staging, and production
-
-✅&nbsp; [Internationalization Support][internationalization_link] - Internationalization support using synthetic code generation to streamline the development process
-
-✅&nbsp; [Sound Null-Safety][null_safety_link] - No more null-dereference exceptions at runtime. Develop with a sound, static type system.
-
-✅&nbsp; [Bloc][bloc_link] - Integrated bloc architecture for scalable, testable code which offers a clear separation between business logic and presentation
-
-✅&nbsp; [Testing][testing_link] - Unit and Widget Tests with 100% line coverage (Integration Tests coming soon!)
-
-✅&nbsp; [Logging][logging_link] - Built-in, extensible logging to capture uncaught Flutter and Dart Exceptions
-
-✅&nbsp; [Very Good Analysis][very_good_analysis_link] - Strict Lint Rules which are used at [Very Good Ventures][very_good_ventures_link]
-
-✅&nbsp; [Continuous Integration][github_actions_link] - Lint, format, test, and enforce code coverage using [GitHub Actions][github_actions_link]
-
-_\* Learn more at [Flutter Starter App: Very Good Core & CLI][very_good_cli_blog_link]_
+Create a new groovin flutter starter application in seconds based on Groovin Core (link coming soon).
 
 ---
 
-### `$ very_good --help`
+### `$ groovin --help`
 
 See the complete list of commands and usage information.
 
 ```sh
-🦄 A Very Good Command Line Interface
+🍪 A Delicious Command Line Interface
 
-Usage: very_good <command> [arguments]
+Usage: groovin <command> [arguments]
 
 Global options:
 -h, --help           Print this usage information.
     --version        Print the current version.
-    --analytics      Toggle anonymous usage statistics.
-
-          [false]    Disable anonymous usage statistics
-          [true]     Enable anonymous usage statistics
 
 Available commands:
-  create   very_good create <output directory>
-           Creates a new very good flutter project in the specified directory.
+  create   groovin create <output directory>
+           Creates a new groovin flutter project in the specified directory.
 
-Run "very_good help <command>" for more information about a command.
+Run "groovin help <command>" for more information about a command.
 ```
 
 [bloc_link]: https://bloclibrary.dev

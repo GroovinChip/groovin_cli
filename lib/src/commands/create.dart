@@ -7,9 +7,6 @@ import 'package:io/io.dart';
 import 'package:mason/mason.dart';
 import 'package:meta/meta.dart';
 import 'package:path/path.dart' as path;
-import 'package:usage/usage_io.dart';
-import 'package:very_good_analysis/very_good_analysis.dart';
-import 'package:groovin_cli/src/command_runner.dart';
 import 'package:groovin_cli/src/templates/groovin_core_bundle.dart';
 
 // A valid Dart identifier that can be used for a package, i.e. no
@@ -30,11 +27,22 @@ class CreateCommand extends Command<int> {
     GeneratorBuilder generator,
   })  : _logger = logger ?? Logger(),
         _generator = generator ?? MasonGenerator.fromBundle {
-    argParser.addOption(
-      'project-name',
-      help: 'The project name for this new Flutter project. '
-          'This must be a valid dart package name.',
-      defaultsTo: null,
+    argParser
+      ..addOption(
+        'project-name',
+        help: 'The project name for this new Flutter project. '
+            'This must be a valid dart package name.',
+        defaultsTo: null,
+      )
+      ..addOption(
+        'description',
+        help: 'The description for this new Flutter project.',
+        defaultsTo: null,
+      )
+      ..addOption(
+      'package_id',
+      help: 'The package or bundle ID for this new Flutter project.',
+      defaultsTo: 'com.example.app',
     );
   }
 
@@ -67,11 +75,17 @@ class CreateCommand extends Command<int> {
   Future<int> run() async {
     final outputDirectory = _outputDirectory;
     final projectName = _projectName;
+    final description = _description;
+    final packageId = _packageId;
     final generateDone = _logger.progress('Bootstrapping');
     final generator = await _generator(groovinCoreBundle);
     final fileCount = await generator.generate(
       DirectoryGeneratorTarget(outputDirectory, _logger),
-      vars: {'project_name': projectName},
+      vars: {
+        'project_name': projectName,
+        'description': description,
+        'package_id': packageId,
+      },
     );
 
     generateDone('Bootstrapping complete');
@@ -108,6 +122,16 @@ class CreateCommand extends Command<int> {
         path.basename(path.normalize(_outputDirectory.absolute.path));
     _validateProjectName(projectName);
     return projectName;
+  }
+
+  String get _description {
+    final description = _argResults['description'] ?? '';
+    return description;
+  }
+
+  String get _packageId {
+    final packageId = _argResults['package_id'] ?? 'com.example.app';
+    return packageId;
   }
 
   void _validateProjectName(String name) {
