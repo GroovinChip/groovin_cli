@@ -51,7 +51,7 @@ class CreateCommand extends Command<int> {
 
   @override
   String get description =>
-      'Creates a new groovin flutter project in the specified directory.';
+      'Creates a new Groovin Flutter project in the specified directory.';
 
   @override
   String get summary => '$invocation\n$description';
